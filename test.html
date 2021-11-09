@@ -1,0 +1,51 @@
+<!-- <script>
+
+    async function thisIsSyncFunction() {
+        let result = 0;
+    
+        result = await fetch('https://codequiz.azurewebsites.net/data').then(res => res.json()).then((response) => {
+            return response.data;
+        });
+
+        return result;
+    }
+    async function main() {
+        let number1 = await thisIsSyncFunction()
+        const calculation = number1 * 10;
+        console.log(calculation); // calculation 100
+    }
+    main()
+
+</script> -->
+<div id="mainContainer"></div><script>function showDialog() {
+    const newDialog = document.createElement('div');
+    newDialog.style.border = 'solid 1px black';
+    newDialog.style.position = 'absolute';
+    newDialog.style.width = '100%';
+    newDialog.style.height = '100%';
+    newDialog.style.top = '0px';
+    newDialog.style.background = 'white';
+
+    const closeBtn = document.createElement('button');
+    const dialogText = document.createElement('div');
+    newDialog.appendChild(closeBtn);
+    newDialog.id = "dialog"
+    newDialog.appendChild(dialogText);
+    dialogText.innerText = 'This is a dialog';
+    closeBtn.innerText = 'Close';
+    document.addEventListener('click', function (e) {
+        if (e.target === closeBtn) {
+            document.body.removeChild(document.getElementById("dialog"));
+        }
+    });
+
+    //do not remove this part, it is for the ease of leak identification
+    const tmp = []; 
+    for(let i = 1; i < 5000000; i++) {
+        tmp.push(i);
+    }
+    closeBtn.tmp = tmp;
+    //end
+    document.body.appendChild(newDialog);
+}
+</script><button onclick="showDialog()">Show dialog</button>
