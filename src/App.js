@@ -1,9 +1,10 @@
 import './App.css';
-import Transaction from './component/list';
-import FormComponent from './component/FormComponent';
-import { useState, useEffect, useReducer } from 'react';
+import ReportComponent from './component/ReportComponent';
+import { useState, useEffect } from 'react';
 import DataContext from './data/DataContext';
-import ReportComponent from './component/ReportCompoent';
+import InsertComponent from './component/insertComponent';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
 function App() {
   const [showReport, setShowReport] = useState(true)
   const initData = [
@@ -21,17 +22,17 @@ function App() {
     })
     console.log(`รายการใหม่ที่แอดเพิ่มเข้ามา`, newItem)
   }
-  const reducer = (state, action) => {
-    console.log('test')
-    switch (action.type) {
-      case "show":
-        return setShowReport(true)
-      case "hide":
-        return setShowReport(false)
-      default: setShowReport(true)
-    }
-  }
-  const [result, dispatch] = useReducer(reducer, showReport)
+  // const reducer = (state, action) => {
+  //   console.log('test')
+  //   switch (action.type) {
+  //     case "show":
+  //       return setShowReport(true)
+  //     case "hide":
+  //       return setShowReport(false)
+  //     default: setShowReport(true)
+  //   }
+  // }
+  // const [result, dispatch] = useReducer(reducer, showReport)
   useEffect(() => {
     const amounts = items.map(items => items.amount)
     let income = amounts.filter(a => a > 0).reduce((total, element) => total += element, 0)
@@ -48,12 +49,30 @@ function App() {
         <div>
           <h1>โปรแกรมบัญชีรายรับ - รายจ่าย</h1>
           <p>บันทึกข้อมูลบัญชีในแต่ละวัน</p>
-          <button onClick={() => dispatch({ type: "show" })}>เพิ่ม</button>
+          <Router>
+            <div>
+              <ul className="horizontal-menu">
+                <li>
+                  <Link to="/">ข้อมูลบัญชี</Link>
+                </li>
+                <li>
+                  <Link to="/insert">บันทึกข้อมูล</Link>
+                </li>
+              </ul>
+              <Routes>
+                <Route path="/" exact element={<ReportComponent/>}></Route>
+                <Route path="insert" exact element={<InsertComponent onAddItem={onAddItem} items={items}/>}>
+                </Route>
+              </Routes>
+            </div>
+          </Router>
+          {/* <button onClick={() => dispatch({ type: "show" })}>เพิ่ม</button>
           <button onClick={() => dispatch({ type: "hide" })}>ลด</button>
-          {showReport && <ReportComponent />}
-          <FormComponent onAddItem={onAddItem} />
+          {showReport && <ReportComponent />} */}
+
+
         </div>
-        <Transaction data={items} />
+
       </div>
     </DataContext.Provider>
     // <div>
