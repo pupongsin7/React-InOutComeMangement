@@ -60,8 +60,8 @@ function App() {
                 </li>
               </ul>
               <Routes>
-                <Route path="/" exact element={<ReportComponent/>}></Route>
-                <Route path="insert" exact element={<InsertComponent onAddItem={onAddItem} items={items}/>}>
+                <Route path="/" exact element={<ReportComponent />}></Route>
+                <Route path="insert" exact element={<InsertComponent onAddItem={onAddItem} items={items} />}>
                 </Route>
               </Routes>
             </div>
