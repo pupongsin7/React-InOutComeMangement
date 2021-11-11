@@ -11,3 +11,16 @@
 body{
   background-color: #ddd;  
 }
+.horizontal-menu{
+  display: flex;  
+}
+.horizontal-menu>li{
+  display: inline-flex;
+  width: 100px;
+  height:40px;
+  align-items: center;
+  justify-content: center;
+  background-color: grey;
+  padding: 5px;
+  border-right: 1px solid #dddddd;
+}

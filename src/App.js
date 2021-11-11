@@ -6,7 +6,7 @@ import InsertComponent from './component/insertComponent';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
-  const [showReport, setShowReport] = useState(true)
+  // const [showReport, setShowReport] = useState(true)
   const initData = [
     { id: 1, title: "ค่าเดินทาง", amount: -200 },
     { id: 2, title: "เงินเดือน", amount: 2000 },

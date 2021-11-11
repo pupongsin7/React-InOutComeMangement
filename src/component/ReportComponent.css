@@ -12,4 +12,8 @@
 }
 .ReportContainer>div:first-of-type{
     border-right: 1px solid #dddddd;
+    color: green;
+}
+.ReportContainer>div:last-of-type{
+    color: red;
 }
